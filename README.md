@@ -1,8 +1,8 @@
 # EVION BUILD ON FLOW TESTNET
 
-CONTRACT ADDRESS 0x2ed1e0e3c77AcE06a0ef51076a57EddE6Ce3Ec8A
+CONTRACT ADDRESS 0x3583ECddEfa9C068A4720efe7e84860ddc99B57B
 
-[VERIFY EVO](https://evm-testnet.flowscan.io/token/0x2ed1e0e3c77AcE06a0ef51076a57EddE6Ce3Ec8A)
+[VERIFY EVO](https://evm-testnet.flowscan.io/token/0x3583ECddEfa9C068A4720efe7e84860ddc99B57B)
 
 ------------
 
