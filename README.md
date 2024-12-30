@@ -1,8 +1,8 @@
-# EVION BUILD ON EDUCHAIN TESTNET
+# EVION BUILD ON FLOW TESTNET
 
-CONTRACT ADDRESS 0xdc8da72e9495e7be78f60f326243e60b3b6a0d08
+CONTRACT ADDRESS 0x2ed1e0e3c77AcE06a0ef51076a57EddE6Ce3Ec8A
 
-[VERIFY EVO](https://edu-chain-testnet.blockscout.com/token/0xDc8da72e9495E7be78f60F326243e60b3b6A0D08)
+[VERIFY EVO](https://evm-testnet.flowscan.io/token/0x2ed1e0e3c77AcE06a0ef51076a57EddE6Ce3Ec8A)
 
 ------------
 
