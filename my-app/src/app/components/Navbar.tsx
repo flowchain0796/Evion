@@ -8,12 +8,17 @@ import { ethers } from "ethers";
 import { BrowserProvider } from "ethers";
 import Token from "../contractInfo/contractAbi.json"
 import contractAddress from "../contractInfo/contract.json"
+import Connect from "./Connect";
 
 
 
 declare global {
   interface Window {
-    ethereum?: any; // Declare the ethereum object
+    ethereum?: {
+      isMetaMask: boolean;
+      request: (args: { method: string; params?: any[] }) => Promise<any>;
+    };
+    okxwallet?: any;
   }
 }
 
@@ -39,17 +44,18 @@ const Navbar: React.FC = () => {
     // await (await bounceContract.transfer(address, ethers.utils.parseUnits(charge.toString(), 18))).wait();
   }
   const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
+    if (window.ethereum || window.okxwallet) {
       try {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const provider = window.ethereum || window.okxwallet;
+        const accounts = await provider.request({ method: 'eth_requestAccounts' });
         setWalletAddress(accounts[0]);
         setWalletConnected(true);
-        mint()
+        mint();
       } catch (error) {
         console.error("Error connecting to wallet:", error);
       }
     } else {
-      alert('MetaMask is not installed. Please install it to use this feature.');
+      alert('No Ethereum provider found. Please install MetaMask, OKX Wallet, or use a compatible wallet.');
     }
   };
 
@@ -107,7 +113,7 @@ const Navbar: React.FC = () => {
           Create Event
           </Link>
         </button>
-        {!walletConnected ? (
+        {/* {!walletConnected ? (
         <button onClick={connectWallet} className="bg-purple-600 hover:bg-purple-700 text-sm font-semibold px-4 py-2 rounded-lg shadow transition duration-150">
           Connect Wallet
         </button>
@@ -115,8 +121,8 @@ const Navbar: React.FC = () => {
           <button className="bg-purple-600 hover:bg-purple-700 text-sm font-semibold px-4 py-2 rounded-lg shadow transition duration-150">
           {walletAddress.slice(0, 5) + '...' + walletAddress.slice(-4)}
         </button>
-        )}
-      
+        )} */}
+      <Connect/>
         {/* <div className="flex items-center space-x-4"> */}
           {/* <FaSearch className="cursor-pointer hover:text-gray-300" />
           <IoMdNotificationsOutline className="cursor-pointer hover:text-gray-300" />

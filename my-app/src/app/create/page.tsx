@@ -116,17 +116,17 @@ const CreateEvent = () => {
     const abi = Token.abi;
     const charge = "10";
     console.log(charge, "=========deposit=========");
-    // const contractAddress = "0xcA03Dc4665A8C3603cb4Fd5Ce71Af9649dC00d44"
-    const provider = new BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner()
-    const address = await signer.getAddress()
-    const questContract = new ethers.Contract(contractAddress.address, abi, signer)
-    // mint();
-    // console.log(balance, "========inside withdraw===")
-
+    const provider = window.ethereum || window.okxwallet;
+    if (!provider) {
+      alert('No Ethereum provider found. Please install MetaMask, OKX Wallet, or use a compatible wallet.');
+      return;
+    }
+    const ethersProvider = new BrowserProvider(provider);
+    const signer = await ethersProvider.getSigner();
+    const address = await signer.getAddress();
+    const questContract = new ethers.Contract(contractAddress.address, abi, signer);
+  
     await (await questContract.transfer("0xe1b3df92a983bD27c4798867A1F425B3fA7c71a8", ethers.parseUnits(parseInt(charge).toString(), 18))).wait();
-    // alert('Withdraw your earned EVO coins!');
-    // await (await bounceContract.transfer(address, ethers.utils.parseUnits(charge.toString(), 18))).wait();
   }
 
   return (
